@@ -29,14 +29,7 @@ import javax.jms.TextMessage;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQQueue;
 
-/**  
- * ClassName:Test2 <br/>  
- * Description:That's the purpose of the class
- * Date:     2017年11月21日 下午2:36:11 <br/>  
- * @author   zhoufengbo  
- * @version  V1.0  
- * @see        
- */
+
 /**  
  * ClassName: Test2 <br/>  
  * date: 2017年11月21日 下午2:36:11 <br/>  

@@ -185,7 +185,6 @@
 			<artifactId>resteasy-netty4</artifactId>
 			<version>${resteasy.version}</version>
 		</dependency>
-
 		<!-- rest配置end -->
 
 		<dependency>
