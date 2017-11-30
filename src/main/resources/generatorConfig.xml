@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <classPathEntry location="E:\MavenRepository\org\postgresql\postgresql\9.4-1205-jdbc41\postgresql-9.4-1205-jdbc41.jar" />
+  <context id="context1" >
+    <jdbcConnection driverClass="org.postgresql.Driver" connectionURL="jdbc:postgresql://db.iesp.weilian.cn:5432/iesp-declaration" userId="postgres" password="suneeedba" />
+    
+    <javaModelGenerator targetPackage="com.zhoufb.model.db" targetProject="TestJMS">
+    	<property name="enableSubPackages" value="true" />
+    </javaModelGenerator>
+   
+    <sqlMapGenerator targetPackage="com.zhoufb.dao" targetProject="TestJMS">
+    	<property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+   
+    <javaClientGenerator targetPackage="com.zhoufb.dao" targetProject="TestJMS" type="XMLMAPPER">
+    	<property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+  
+
+	 <table tableName="t_export_payment" domainObjectName="ExportPayment" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> 	
+  </context>
+</generatorConfiguration>
