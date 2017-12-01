@@ -31,6 +31,8 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.zhoufb.api.rest.TestRestService;
 import com.zhoufb.consumer.service.TestConsumer;
 import com.zhoufb.model.ResultMsg;
+import com.zhoufb.model.sys.SystemUserInfoT;
+import com.zhoufb.redis.CacheUtils;
 
 /**  
  * ClassName:TestRestServiceImpl <br/>  
@@ -53,6 +55,9 @@ public class TestRestServiceImpl implements TestRestService{
 	@Consumes("application/json")
 	@Produces("application/json")
 	public ResultMsg  hello(){
+		
+		SystemUserInfoT userInfo = CacheUtils.get(SystemUserInfoT.class, "5673285f309c49c985906972cfb0c5ef");
+		
 		ResultMsg msg=new ResultMsg();//返回参数
 		List<Object> ls=new ArrayList<Object>();//返回集合
 		ls.add(testConsumer.test());//进入返回

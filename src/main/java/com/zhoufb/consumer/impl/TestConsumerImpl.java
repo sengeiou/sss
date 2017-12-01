@@ -24,6 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zhoufb.consumer.service.TestConsumer;
 import com.zhoufb.service.TestService;
@@ -50,6 +51,7 @@ public class TestConsumerImpl implements TestConsumer{
 	@Autowired
 	private TestService testService;
 	
+	@Transactional(readOnly = false, rollbackFor = Exception.class)
 	public Map<String, Object> test() {
 		Map<String, Object> resultMap=new HashMap<String, Object>();
 		logger.info("sdfasd","一顿log");
