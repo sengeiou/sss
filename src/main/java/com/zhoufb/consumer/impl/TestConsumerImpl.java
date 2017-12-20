@@ -37,12 +37,7 @@ import com.zhoufb.service.TestService;
  * @version  V1.0  
  * @see        
  */
-/**  
- * ClassName: TestConsumerImpl <br/>  
- * date: 2017年11月28日 下午1:17:10 <br/>  
- * @author zhoufengbo  
- * @version v1.0
- */
+
 @Service("test")
 public class TestConsumerImpl implements TestConsumer{
 
