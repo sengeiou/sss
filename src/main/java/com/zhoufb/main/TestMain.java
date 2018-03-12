@@ -37,7 +37,7 @@ public class TestMain {
 	 * @throws 
 	 */
 	public static void main(String[] args) {
-
+		//-Rdevelop
 		setArgs(args);
 		System.setProperty("dubbo.spring.javaconfig","com.zhoufb.config");
 
