@@ -61,6 +61,7 @@ public class TestRestServiceImpl implements TestRestService{
 		ResultMsg msg=new ResultMsg();//返回参数
 		List<Object> ls=new ArrayList<Object>();//返回集合
 		ls.add(testConsumer.test());//进入返回
+		//ls.add("sssjishu");
 		msg.setData(ls);//设置返回
 		return msg;
 	}
