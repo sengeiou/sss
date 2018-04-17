@@ -88,7 +88,7 @@ public class RCacheConfig {
 */
 	static {
 		//loadConfig("/redisConfig.properties");
-		host = "redis.vr.weilian.cn";
+		host = "zhoufb.com";
 		port = 6379;
 		maxActive =500;
 		maxIdle = 150;

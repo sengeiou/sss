@@ -33,7 +33,7 @@ import org.springframework.stereotype.Service;
  * @see        
  */
 @Configuration
-@EnableScheduling
+//@EnableScheduling
 @Service("TestTaskConsumer")
 public class TestTaskConsumer {
 	

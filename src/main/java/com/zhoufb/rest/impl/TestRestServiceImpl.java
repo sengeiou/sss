@@ -56,11 +56,13 @@ public class TestRestServiceImpl implements TestRestService{
 	@Produces("application/json")
 	public ResultMsg  hello(){
 		
-		SystemUserInfoT userInfo = CacheUtils.get(SystemUserInfoT.class, "5673285f309c49c985906972cfb0c5ef");
+		//SystemUserInfoT userInfo = CacheUtils.get(SystemUserInfoT.class, "5673285f309c49c985906972cfb0c5ef");
+		String st = CacheUtils.getValue("boge");
+		System.out.println("redis:"+st);
 		
 		ResultMsg msg=new ResultMsg();//返回参数
 		List<Object> ls=new ArrayList<Object>();//返回集合
-		ls.add(testConsumer.test());//进入返回
+		//ls.add(testConsumer.test());//进入返回
 		//ls.add("sssjishu");
 		msg.setData(ls);//设置返回
 		return msg;
