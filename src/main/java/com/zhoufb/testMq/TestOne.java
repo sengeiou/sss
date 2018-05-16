@@ -29,7 +29,7 @@ public class TestOne {
 	 * @param args
 	 * @throws 
 	 */
-	public static void main(String[] args) throws JMSException {
+	public static void main(String[] args) throws JMSException {/*
 		ConnectionFactory factory = new ActiveMQConnectionFactory("vm://localhost");
 		Connection connection = factory.createConnection();
 		connection.start();
@@ -57,7 +57,7 @@ public class TestOne {
 		Message recvMessage = comsumer.receive();
 		System.out.println("received:" + ((TextMessage) recvMessage).getText());
 
-/*		 //接受消息的方式二(区别一在于,如果有很多消息,在一中需要while(true){//dosomething },这里不需要.推荐使用方式二)
+		 //接受消息的方式二(区别一在于,如果有很多消息,在一中需要while(true){//dosomething },这里不需要.推荐使用方式二)
 		 comsumer.setMessageListener(new MessageListener() {
 		     public void onMessage(Message m) {
 		         TextMessage textMsg = (TextMessage) m;
@@ -67,9 +67,9 @@ public class TestOne {
 		             e.printStackTrace();
 		         }
 		     }
-		 });*/
+		 });
 
-	}
+	*/}
 
 }
   

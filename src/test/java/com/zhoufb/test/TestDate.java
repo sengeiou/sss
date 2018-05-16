@@ -33,8 +33,18 @@ public class TestDate {
 
 	
 	public static void main(String[] args) {
-		 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd HHmmss");
+	/*	 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd HHmmss");
 		 System.out.println(sdf.format(new Date()));
+		 
+		 String url="https://item.m.jd.com/product/2680560.html?utm_source=iosapp&utm_medium=appshare&utm_campaign=t_335139774&utm_term=Wxfriends";
+		System.out.println( url.split(".html")[0]);
+		String st= url.split(".html")[0];
+		System.out.println(st.split("/")[4]);*/
+		
+		String p1="19.80";
+		String p2="2.0";
+		System.out.println(Double.parseDouble(p1)*Double.parseDouble(p2)/100+"");
+		 
 	}
 
 }

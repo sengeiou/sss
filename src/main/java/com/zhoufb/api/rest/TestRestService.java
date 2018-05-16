@@ -23,5 +23,9 @@ import com.zhoufb.model.ResultMsg;
 
 public interface TestRestService {
 	public ResultMsg  hello();
+	
+	public String index();
+	
+	public String JdIndex(String url);
 }
   

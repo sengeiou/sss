@@ -11,6 +11,15 @@
       <resource>
         <directory>src/main/resources</directory>
       </resource>
+      <resource>
+        <targetPath>lib/</targetPath>
+        <directory>lib/</directory>
+        <includes>
+          <include>lib/taobao-sdk-java-auto_1521526934105-20180427.jar</include>
+          <include>lib/suning-sdk-java-standard-20180503.jar</include>
+          <include>lib/open-api-sdk-2.3.jar</include>
+        </includes>
+      </resource>
     </resources>
     <plugins>
       <plugin>
@@ -67,6 +76,41 @@
       </plugin>
     </plugins>
   </build>
+  <dependencies>
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-api</artifactId>
+      <version>7.0</version>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>javax.mail</artifactId>
+          <groupId>com.sun.mail</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>test.taobao</groupId>
+      <artifactId>taobao</artifactId>
+      <version>1.0.0</version>
+      <scope>system</scope>
+      <systemPath>E:\sunzee_workPlace_asean\TestJMS/lib/taobao-sdk-java-auto_1521526934105-20180427.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>test.jd</groupId>
+      <artifactId>jd</artifactId>
+      <version>1.0.0</version>
+      <scope>system</scope>
+      <systemPath>E:\sunzee_workPlace_asean\TestJMS/lib/open-api-sdk-2.3.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>test.suning</groupId>
+      <artifactId>suning</artifactId>
+      <version>1.0.0</version>
+      <scope>system</scope>
+      <systemPath>E:\sunzee_workPlace_asean\TestJMS/lib/suning-sdk-java-standard-20180503.jar</systemPath>
+    </dependency>
+  </dependencies>
   <properties>
     <netty.version>4.1.8.Final</netty.version>
     <application.class>com.zhoufb.main.TestMain</application.class>

@@ -17,7 +17,9 @@
   
 package com.zhoufb.consumer.impl;  
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -26,7 +28,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.gson.Gson;
+import com.taobao.api.ApiException;
 import com.zhoufb.consumer.service.TestConsumer;
+import com.zhoufb.fangli.jd.JDUtil;
+import com.zhoufb.fangli.jd.jsonBean.GetpromotioninfoResult;
+import com.zhoufb.fangli.jd.jsonBean.JdResultBean;
+import com.zhoufb.fangli.jd.jsonBean.QuerybatchResult;
+import com.zhoufb.fangli.taobao.TaoboUtil;
 import com.zhoufb.service.TestService;
 
 /**  
@@ -52,6 +61,53 @@ public class TestConsumerImpl implements TestConsumer{
 		logger.info("sdfasd","一顿log");
 		resultMap.put("zhoufb", testService.selectByPrimaryKey("335ED3AEFE014DE585FC2D244DD6D3C2").getPayName());
 		return resultMap;
+	}
+
+	/**  
+	 * TODO  
+	 * @see com.zhoufb.consumer.service.TestConsumer#index()  
+	 */
+	@Override
+	public String index() {
+		  
+		try {
+			return TaoboUtil.test2("复古连衣裙2018春夏新款女装休闲宽松韩版气质圆领中袖丝麻连衣裙", 10L,1L);
+		} catch (ApiException e) {
+			  
+			e.printStackTrace();  
+			return "error";
+			
+		}
+	}
+
+	/**  
+	 * TODO  
+	 */
+	@Override
+	public String JdIndex(String url) {
+		List<JdResultBean>list=new ArrayList<JdResultBean>();
+		String sku=url.split(".html")[0].split("/")[4];
+		Gson gson=new Gson();
+		try {
+			JdResultBean bean=new JdResultBean();
+			GetpromotioninfoResult getpromotioninfoResult=gson.fromJson(JDUtil.test1(sku), GetpromotioninfoResult.class);
+			bean.setGoodsName(getpromotioninfoResult.getResult().get(0).getGoodsName());
+			bean.setImgUrl(getpromotioninfoResult.getResult().get(0).getImgUrl());
+			bean.setGoodsName(getpromotioninfoResult.getResult().get(0).getGoodsName());
+			bean.setUnitPrice(getpromotioninfoResult.getResult().get(0).getUnitPrice());
+			bean.setCommisionRatioPc((Double.parseDouble(getpromotioninfoResult.getResult().get(0).getCommisionRatioPc())*
+					Double.parseDouble(getpromotioninfoResult.getResult().get(0).getUnitPrice())/100+"").substring(0, 6));
+			
+			QuerybatchResult guerybatchResult=gson.fromJson(JDUtil.test3(sku), QuerybatchResult.class);
+			bean.setUrl(guerybatchResult.getUrlList().get(0).getUrl());
+			list.add(bean);
+			return gson.toJson(list);
+		} catch (Exception e) {
+			  
+			e.printStackTrace();  
+			return "error";
+			
+		}
 	}
 
 }

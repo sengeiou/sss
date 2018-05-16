@@ -26,6 +26,6 @@ public class RequestFilter implements ContainerRequestFilter{
 
         }
         Map<String,Cookie> map = req.getCookies();
-        map.forEach((x,y)->System.out.println(x+"|"+y));
+       // map.forEach((x,y)->System.out.println(x+"|"+y));
     }
 }

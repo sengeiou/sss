@@ -30,5 +30,9 @@ import java.util.Map;
 
 public interface TestConsumer {
 	public Map<String, Object> test();
+	
+	public String index();
+	
+	public String JdIndex(String url);
 }
   

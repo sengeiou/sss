@@ -24,6 +24,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -66,6 +67,29 @@ public class TestRestServiceImpl implements TestRestService{
 		//ls.add("sssjishu");
 		msg.setData(ls);//设置返回
 		return msg;
+	}
+
+
+	@GET
+    @Path("index")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public String index() {
+		
+		return testConsumer.index();
+	}
+	
+
+	@GET
+    @Path("JdIndex")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public String JdIndex(@QueryParam("url") String url) {
+		try {
+			return testConsumer.JdIndex(url);
+		}catch (Exception e) {
+			return "请稍后再试！";
+		}
 	}
 }
   
