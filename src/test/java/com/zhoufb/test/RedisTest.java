@@ -44,8 +44,13 @@ public class RedisTest {
 	 */
 	public static void main(String[] args) {
 
-		SystemUserInfoT userInfoT = CacheUtils.get(SystemUserInfoT.class, "5673285f309c49c985906972cfb0c5ef");
-		System.out.println(userInfoT.getName());
+		/*SystemUserInfoT userInfoT = CacheUtils.get(SystemUserInfoT.class, "5673285f309c49c985906972cfb0c5ef");
+		System.out.println(userInfoT.getName());*/
+		
+		//String url="https://item.jd.com/3356012.html";
+		String url="https://item.m.jd.com/product/2680560.html?utm_source=iosapp&utm_medium=appshare&utm_campaign=t_335139774&utm_term=Wxfriends";
+		String[] urlArr=url.split(".html")[0].split("/");
+		System.out.println(		urlArr[urlArr.length-1]);
 
 	}
 

@@ -17,6 +17,7 @@
   
 package com.zhoufb.consumer.impl;  
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -59,7 +60,7 @@ public class TestConsumerImpl implements TestConsumer{
 	public Map<String, Object> test() {
 		Map<String, Object> resultMap=new HashMap<String, Object>();
 		logger.info("sdfasd","一顿log");
-		resultMap.put("zhoufb", testService.selectByPrimaryKey("335ED3AEFE014DE585FC2D244DD6D3C2").getPayName());
+		//resultMap.put("zhoufb", testService.selectByPrimaryKey("335ED3AEFE014DE585FC2D244DD6D3C2").getPayName());
 		return resultMap;
 	}
 
@@ -86,7 +87,8 @@ public class TestConsumerImpl implements TestConsumer{
 	@Override
 	public String JdIndex(String url) {
 		List<JdResultBean>list=new ArrayList<JdResultBean>();
-		String sku=url.split(".html")[0].split("/")[4];
+		String[] urlArr=url.split(".html")[0].split("/");
+		String sku=urlArr[urlArr.length-1];
 		Gson gson=new Gson();
 		try {
 			JdResultBean bean=new JdResultBean();
@@ -95,8 +97,11 @@ public class TestConsumerImpl implements TestConsumer{
 			bean.setImgUrl(getpromotioninfoResult.getResult().get(0).getImgUrl());
 			bean.setGoodsName(getpromotioninfoResult.getResult().get(0).getGoodsName());
 			bean.setUnitPrice(getpromotioninfoResult.getResult().get(0).getUnitPrice());
-			bean.setCommisionRatioPc((Double.parseDouble(getpromotioninfoResult.getResult().get(0).getCommisionRatioPc())*
-					Double.parseDouble(getpromotioninfoResult.getResult().get(0).getUnitPrice())/100+"").substring(0, 6));
+			
+			BigDecimal a=new BigDecimal(getpromotioninfoResult.getResult().get(0).getCommisionRatioPc());
+			BigDecimal b=new BigDecimal(getpromotioninfoResult.getResult().get(0).getUnitPrice());
+			
+			bean.setCommisionRatioPc(a.multiply(b).divide(new BigDecimal(100)).setScale(2,BigDecimal.ROUND_HALF_UP).toString());
 			
 			QuerybatchResult guerybatchResult=gson.fromJson(JDUtil.test3(sku), QuerybatchResult.class);
 			bean.setUrl(guerybatchResult.getUrlList().get(0).getUrl());

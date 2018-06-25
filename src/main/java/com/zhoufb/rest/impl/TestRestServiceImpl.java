@@ -26,13 +26,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.zhoufb.api.rest.TestRestService;
 import com.zhoufb.consumer.service.TestConsumer;
 import com.zhoufb.model.ResultMsg;
-import com.zhoufb.model.sys.SystemUserInfoT;
 import com.zhoufb.redis.CacheUtils;
 
 /**  
@@ -48,8 +49,11 @@ import com.zhoufb.redis.CacheUtils;
 @Path("zhoufb")
 public class TestRestServiceImpl implements TestRestService{
 	
+	private Logger logger =LoggerFactory.getLogger(TestRestServiceImpl.class);
+	
 	@Autowired
 	private TestConsumer testConsumer;
+	
 	
 	@GET
     @Path("test")
@@ -63,9 +67,10 @@ public class TestRestServiceImpl implements TestRestService{
 		
 		ResultMsg msg=new ResultMsg();//返回参数
 		List<Object> ls=new ArrayList<Object>();//返回集合
-		//ls.add(testConsumer.test());//进入返回
+		ls.add(testConsumer.test());//进入返回
 		//ls.add("sssjishu");
 		msg.setData(ls);//设置返回
+		
 		return msg;
 	}
 
@@ -87,7 +92,10 @@ public class TestRestServiceImpl implements TestRestService{
 	public String JdIndex(@QueryParam("url") String url) {
 		try {
 			return testConsumer.JdIndex(url);
+			
 		}catch (Exception e) {
+			logger.info("JdIndex 日志："+e.getMessage());
+			e.printStackTrace();
 			return "请稍后再试！";
 		}
 	}

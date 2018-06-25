@@ -17,6 +17,7 @@
   
 package com.zhoufb.test;  
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -44,6 +45,12 @@ public class TestDate {
 		String p1="19.80";
 		String p2="2.0";
 		System.out.println(Double.parseDouble(p1)*Double.parseDouble(p2)/100+"");
+		
+		BigDecimal a=new BigDecimal(p1);
+		BigDecimal b=new BigDecimal(p2);
+		
+		System.out.println(a.multiply(b).divide(new BigDecimal(100)).setScale(2,BigDecimal.ROUND_HALF_UP).toString());
+		
 		 
 	}
 

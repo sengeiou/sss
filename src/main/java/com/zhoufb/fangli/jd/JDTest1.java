@@ -29,12 +29,14 @@ import com.jd.open.api.sdk.request.cps.ServicePromotionCouponGetCodeByUnionIdReq
 import com.jd.open.api.sdk.request.cps.ServicePromotionGetcodeRequest;
 import com.jd.open.api.sdk.request.cps.ServicePromotionGoodsInfoRequest;
 import com.jd.open.api.sdk.request.cps.ServicePromotionWxsqGetCodeByUnionIdRequest;
+import com.jd.open.api.sdk.request.cps.UnionServiceQueryImportOrdersRequest;
 import com.jd.open.api.sdk.response.cps.ServicePromotionAppGetcodeResponse;
 import com.jd.open.api.sdk.response.cps.ServicePromotionBatchGetcodeResponse;
 import com.jd.open.api.sdk.response.cps.ServicePromotionCouponGetCodeByUnionIdResponse;
 import com.jd.open.api.sdk.response.cps.ServicePromotionGetcodeResponse;
 import com.jd.open.api.sdk.response.cps.ServicePromotionGoodsInfoResponse;
 import com.jd.open.api.sdk.response.cps.ServicePromotionWxsqGetCodeByUnionIdResponse;
+import com.jd.open.api.sdk.response.cps.UnionServiceQueryImportOrdersResponse;
 import com.zhoufb.fangli.jd.jsonBean.GetpromotioninfoResult;
 import com.zhoufb.fangli.jd.jsonBean.QuerybatchResult;
 
@@ -63,7 +65,7 @@ public class JDTest1 {
 
 	public static void main(String[] args) throws JdException {
 
-		test4();
+		test7();
 
 	}
 	//获取推广商品信息接口
@@ -105,7 +107,7 @@ public class JDTest1 {
 		ServicePromotionWxsqGetCodeByUnionIdRequest request=new ServicePromotionWxsqGetCodeByUnionIdRequest();
 
 		request.setProCont( 1 ); 
-		request.setMaterialIds( "1408856589" ); 
+		request.setMaterialIds( "1260800" ); 
 		request.setUnionId( Long.parseLong(unionId) ); 
 
 		ServicePromotionWxsqGetCodeByUnionIdResponse response=client.execute(request);
@@ -147,6 +149,36 @@ public class JDTest1 {
 		request.setPid( "jingdong" );
 
 		ServicePromotionAppGetcodeResponse response=client.execute(request);
+		System.out.println(response.getMsg());
+	}
+	
+	//  优惠券,商品二合一转接API-通过unionId获取推广链接【申请】
+	public static void test6() throws JdException{
+		 JdClient client=new DefaultJdClient(serverUrl,accessToken,appKey,appSecret);
+
+		 ServicePromotionCouponGetCodeByUnionIdRequest request=new ServicePromotionCouponGetCodeByUnionIdRequest();
+
+		 request.setCouponUrl( "jingdong,yanfa,pop" ); 
+		 request.setMaterialIds( "jingdong,yanfa,pop" );
+		 request.setUnionId( 123 );
+		 request.setPositionId( 123 ); 
+		 request.setPid( "jingdong" );
+
+		 ServicePromotionCouponGetCodeByUnionIdResponse response=client.execute(request);
+		System.out.println(response.getMsg());
+	}
+	// 查询引入订单
+	public static void test7() throws JdException{
+		JdClient client=new DefaultJdClient(serverUrl,accessToken,appKey,appSecret);
+
+		UnionServiceQueryImportOrdersRequest request=new UnionServiceQueryImportOrdersRequest();
+
+		request.setUnionId( Long.parseLong(unionId) ); 
+		request.setTime( "2018052112" );
+		request.setPageIndex( 1 ); 
+		request.setPageSize( 12 );
+
+		UnionServiceQueryImportOrdersResponse response=client.execute(request);
 		System.out.println(response.getMsg());
 	}
 }
